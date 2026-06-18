@@ -1,0 +1,56 @@
+[
+  {
+    "id": "sample-1",
+    "name": "ยอดดอยอินทนนท์ (จุดสูงสุดแดนสยาม)",
+    "lat": 18.5908,
+    "lng": 98.4872,
+    "elevation": 2565.34,
+    "radiusElevations": {
+      "center": 2565.34,
+      "north": 2566.12,
+      "south": 2564.50,
+      "east": 2565.80,
+      "west": 2564.95
+    },
+    "image": "",
+    "surveyCost": 50.00,
+    "landFillCost": 0.00,
+    "createdAt": "2026-06-18T22:37:00.000Z"
+  },
+  {
+    "id": "sample-2",
+    "name": "วัดพระศรีรัตนศาสดาราม (วัดพระแก้ว)",
+    "lat": 13.7516,
+    "lng": 100.4927,
+    "elevation": 1.52,
+    "radiusElevations": {
+      "center": 1.52,
+      "north": 1.50,
+      "south": 1.55,
+      "east": 1.51,
+      "west": 1.53
+    },
+    "image": "",
+    "surveyCost": 50.00,
+    "landFillCost": 284000.00,
+    "createdAt": "2026-06-18T22:37:05.000Z"
+  },
+  {
+    "id": "sample-3",
+    "name": "หาดป่าตอง (ภูเก็ต)",
+    "lat": 7.8972,
+    "lng": 98.2954,
+    "elevation": 0.45,
+    "radiusElevations": {
+      "center": 0.45,
+      "north": 0.40,
+      "south": 0.50,
+      "east": 0.42,
+      "west": 0.48
+    },
+    "image": "",
+    "surveyCost": 50.00,
+    "landFillCost": 305000.00,
+    "createdAt": "2026-06-18T22:37:10.000Z"
+  }
+]

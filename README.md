@@ -1,36 +1,77 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🏔️ เล่นของสูง - คู่มือการใช้งานและติดตั้ง (Step-by-Step Guide)
 
-## Getting Started
+ยินดีต้อนรับสู่แอปพลิเคชัน **"เล่นของสูง"** เว็บแอปพลิเคชันสำหรับตรวจสอบระดับความสูงจากน้ำทะเลปานกลาง (Mean Sea Level - MSL) ตามพิกัดดาวเทียมบนแผนที่ OpenStreetMap แบบเรียลไทม์ พร้อมระบบวิเคราะห์ความชันรอบตัวในรัศมี 50 เมตร พร้อมระบบแสดงค่าธรรมเนียมบริการสำรวจและบันทึกภาพถ่ายสถานที่จริงลงฐานข้อมูลพิกัดในเครื่อง (หน่วยเงินบาท)
 
-First, run the development server:
+แอปพลิเคชันนี้พัฒนาด้วย **Next.js** และเก็บข้อมูลในฐานข้อมูลไฟล์ภายในเครื่อง ทำให้มั่นใจได้ว่าข้อมูลพิกัดที่ปักหมุดไว้จะไม่สูญหายเมื่อปิดหรือรีเฟรชหน้าจอ
 
+---
+
+## 🛠️ สิ่งที่ต้องมีในเครื่องก่อนติดตั้ง (Prerequisites)
+
+ก่อนเริ่มใช้งาน กรุณาตรวจสอบว่าเครื่องคอมพิวเตอร์ของคุณมีโปรแกรมดังต่อไปนี้:
+
+1. **Node.js (เวอร์ชัน 18.0 ขึ้นไป)**: เครื่องมือสำหรับรันแอปพลิเคชัน
+   * **วิธีติดตั้งสำหรับ Windows และ macOS**:
+     * เข้าไปที่เว็บไซต์ [nodejs.org](https://nodejs.org/)
+     * ดาวน์โหลดเวอร์ชันที่เป็น **LTS** (แนะนำสำหรับผู้ใช้ทั่วไป)
+     * เปิดไฟล์ที่ดาวน์โหลดมาแล้วกด "Next" หรือ "ติดตั้ง" ตามขั้นตอนจนเสร็จสิ้น
+2. **การเชื่อมต่ออินเทอร์เน็ต**: เนื่องจากแอปพลิเคชันต้องดาวน์โหลดแผนที่ดาวเทียมจาก OpenStreetMap และข้อมูลระดับความสูงจากอินเทอร์เน็ต
+
+---
+
+## 🚀 ขั้นตอนการติดตั้งและเปิดใช้งานแอปพลิเคชัน
+
+ทำตามขั้นตอนด้านล่างทีละขั้นตอนได้เลยครับ:
+
+### ขั้นตอนที่ 1: เปิดโปรแกรม Terminal หรือ Command Prompt
+* **สำหรับ macOS / Linux**: กดปุ่ม `Command + Spacebar` พิมพ์ค้นหาคำว่า `Terminal` แล้วกด Enter
+* **สำหรับ Windows**: กดปุ่ม `Start` พิมพ์ค้นหาคำว่า `cmd` หรือ `Command Prompt` แล้วกด Enter
+
+### ขั้นตอนที่ 2: ย้ายหน้าต่างคำสั่งไปยังโฟลเดอร์โปรเจกต์
+ใช้คำสั่ง `cd` ตามด้วยเส้นทางโฟลเดอร์ของแอปพลิเคชันนี้ ตัวอย่างเช่น:
+```bash
+cd /Users/saleng/Documents/training/earth_level
+```
+*(สำหรับ Windows สามารถพิมพ์ `cd` เว้นวรรคแล้วลากโฟลเดอร์โปรเจกต์มาวางในหน้าต่างคำสั่งได้เลย)*
+
+### ขั้นตอนที่ 3: ติดตั้งแพ็กเกจเสริม
+พิมพ์คำสั่งนี้เพื่อดาวน์โหลดส่วนประกอบที่จำเป็นสำหรับแผนที่และการทำงาน:
+```bash
+npm install
+```
+*รอระบบประมวลผลประมาณ 10-30 วินาทีจนเสร็จสิ้น*
+
+### ขั้นตอนที่ 4: เริ่มรันแอปพลิเคชันในโหมดพัฒนา
+พิมพ์คำสั่งเพื่อเปิดใช้งานเซิร์ฟเวอร์จำลองในเครื่องของคุณ:
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
+เมื่อรันสำเร็จ หน้าจอจะแสดงข้อความสีเขียวคล้ายๆ แบบนี้:
+` Ready in 1.2s` และมีลิงก์ `http://localhost:3000` ปรากฏขึ้นมา
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### ขั้นตอนที่ 5: เปิดใช้งานบนเว็บเบราว์เซอร์
+เปิดโปรแกรม Google Chrome, Safari หรือ Edge ของคุณ แล้วพิมพ์ที่อยู่เว็บด้านบน:
+👉 **[http://localhost:3000](http://localhost:3000)**
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+เมื่อกด Enter คุณจะพบกับหน้าตาแอปพลิเคชัน **"เล่นของสูง"** ภาษาไทยพร้อมใช้งานทันที!
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## 💡 ฟีเจอร์เด่นภายในแอปพลิเคชัน
 
-To learn more about Next.js, take a look at the following resources:
+* **แผนที่ดาวเทียม OpenStreetMap**: สามารถคลิกเลือกจุดใดก็ได้บนแผนที่ หรือลากหมุดสีน้ำเงินเพื่อเปลี่ยนพิกัด
+* **ระบบค้นหาด่วน (Search)**: พิมพ์ชื่อสถานที่จริงในไทย เช่น *“วัดพระแก้ว”*, *“พัทยา”* หรือ *“เชียงใหม่”* เพื่อให้ระบบนำทางไปทันที
+* **คำนวณ 50 เมตรรอบข้าง**: แสดงข้อมูลเปรียบเทียบระดับความสูงใน 5 ทิศทาง (ศูนย์กลาง, เหนือ, ใต้, ออก, ตก) เพื่อช่วยประเมินลักษณะพื้นที่รอบพิกัด
+* **ระบบจำลองค่าบริการ**:
+  * แสดงอัตราค่าบริการสำรวจข้อมูลดาวเทียมจำลองในสกุลเงิน **บาท** (50.00 บาทต่อพิกัด) เพื่อเพิ่มความสมจริงในระบบบันทึกฐานข้อมูลพิกัดแผนที่
+* **บันทึกหมุดพร้อมรูปถ่ายจริง**: ใส่ชื่อพิกัด อัปโหลดรูปภาพสถานที่จริง (.jpg, .png ขนาดไม่เกิน 2MB) แล้วคลิกบันทึก ข้อมูลจะถูกบันทึกถาวรลงในฐานข้อมูลไฟล์ภายในเครื่อง (`data/pins.json`)
+* **ส่งออกไฟล์ CSV**: สามารถดาวน์โหลดข้อมูลความสูงและสถิติพิกัดออกไปใช้งานบน Microsoft Excel ได้ทันที (รองรับภาษาไทย ตัวอักษรไม่เพี้ยน)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🔧 วิธีแก้ไขปัญหาเบื้องต้น (Troubleshooting)
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+* **หากหน้าจอแผนที่แสดงไม่สมบูรณ์**: ตรวจสอบการเชื่อมต่ออินเทอร์เน็ต หรือทดลองรีเฟรชหน้าเบราว์เซอร์อีกครั้ง
+* **พิกัดพังหรือดึงข้อมูลไม่ได้**: บางช่วงเวลาเซิร์ฟเวอร์เปิดข้อมูลสาธารณะของ Open-Meteo อาจหนาแน่น ให้รอสักครู่แล้วกดปุ่ม "ย้ายพิกัด" ใหม่
+* **ข้อผิดพลาด "Port 3000 is already in use"**: เกิดจากมีโปรเจกต์อื่นเปิดค้างไว้ที่พอร์ต 3000 ระบบ Next.js จะเปลี่ยนไปรันพอร์ตอื่นโดยอัตโนมัติ (เช่น `http://localhost:3001`) ให้ดูพอร์ตที่แสดงบนหน้าต่าง Terminal ในขั้นตอนที่ 4
+* **ต้องการรีเซ็ตข้อมูลตัวอย่างใหม่**: สามารถลบหรือแก้ไขข้อมูลในไฟล์ `data/pins.json` ด้วยโปรแกรมแก้ไขข้อความธรรมดาได้โดยตรง
