@@ -5,22 +5,38 @@ import path from 'path';
 // กำหนดพาธไฟล์ฐานข้อมูล JSON
 const dbPath = path.join(process.cwd(), 'data', 'pins.json');
 
+// ตัวแปรเก็บจำลองในหน่วยความจำสำหรับการรันบน Vercel (เนื่องจาก Vercel filesystem เป็น Read-Only)
+if (!global.mockPinsMemory) {
+  global.mockPinsMemory = null;
+}
+
 // ฟังก์ชันช่วยอ่านข้อมูลจากไฟล์
 async function readPins() {
+  // หากมีข้อมูลที่บันทึกชั่วคราวในหน่วยความจำ ให้ใช้ข้อมูลนั้นก่อน (สำหรับ Vercel)
+  if (global.mockPinsMemory !== null) {
+    return global.mockPinsMemory;
+  }
   try {
     const data = await fs.readFile(dbPath, 'utf8');
     return JSON.parse(data);
   } catch (error) {
-    // หากไม่มีไฟล์ ให้สร้างอาเรย์ว่าง
     return [];
   }
 }
 
 // ฟังก์ชันช่วยเขียนข้อมูลลงไฟล์
 async function writePins(pins) {
-  // สร้างโฟลเดอร์หลักของไฟล์หากยังไม่มี
-  await fs.mkdir(path.dirname(dbPath), { recursive: true });
-  await fs.writeFile(dbPath, JSON.stringify(pins, null, 2), 'utf8');
+  try {
+    // พยายามเขียนไฟล์ลงดิสก์ตามปกติ (สำหรับรันในเครื่องตัวเอง Local)
+    await fs.mkdir(path.dirname(dbPath), { recursive: true });
+    await fs.writeFile(dbPath, JSON.stringify(pins, null, 2), 'utf8');
+    // อัปเดตในความจำหลักด้วยเพื่อให้ซิงค์กัน
+    global.mockPinsMemory = pins;
+  } catch (error) {
+    // หากเขียนไฟล์ล้มเหลว (เช่น รันบนเซิร์ฟเวอร์แบบ Read-only ของ Vercel)
+    console.warn('ระบบตรวจพบสิทธิ์จัดเก็บข้อมูลเป็น Read-only (เช่น รันบน Vercel), จะสลับไปเก็บบันทึกชั่วคราวบนเซิร์ฟเวอร์แทน:', error.message);
+    global.mockPinsMemory = pins;
+  }
 }
 
 // GET: ดึงข้อมูลหมุดทั้งหมด
